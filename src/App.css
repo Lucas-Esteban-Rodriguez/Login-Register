@@ -24,3 +24,27 @@ body {
     z-index: 1;
     transition: 0.5s;
 }
+
+.input-form {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    width: 100%;
+    border-bottom: lightgray 2px solid;
+}
+
+.label-form {
+    pointer-events: none;
+    display: block;
+    top: 0;
+    width: 100%;
+    transition: 0.3s;
+}
+
+.input-form::placeholder {
+    color: transparent;
+}
+
+.input-form:valid ~ .label-form {
+    top: -20px;
+}
