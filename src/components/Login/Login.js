@@ -1,10 +1,15 @@
-import { useState } from "react"
-import { getFirestore , collection , getDocs , query , where, getDoc} from "firebase/firestore"
+import { UserContext } from "../context/userContext"
+import { useState , useContext } from "react"
+import { useNavigate } from "react-router-dom"
+import { getFirestore , collection , getDocs} from "firebase/firestore"
+
 const Login = () =>{
 
     const [ email , setEmail ] = useState()
     const [ password , setPassword ] = useState()
-    const [ userLogin , setLogin ] = useState(false)
+    const navigate = useNavigate()
+    const { handleUserData } = useContext(UserContext)
+
 
     const validateUser = async() =>{
 
@@ -12,10 +17,13 @@ const Login = () =>{
             const db = getFirestore()
             const usersRef = collection(db,'Usuarios')
             const docsRef = await getDocs(usersRef)
-            docsRef.forEach(doc => {
+            docsRef.forEach(doc => { 
                 
-                doc.id === email && doc.password === password? setLogin(true):console.log(' ')
-
+                if (doc.id === email && doc.data().password === password) {
+                    const data = [doc.data()]
+                    handleUserData(...data)
+                    navigate('/home')
+                }
             });
         }
 
@@ -30,7 +38,7 @@ const Login = () =>{
         wall.style.left = '50%'
       }
 
-    return(
+    return (
 
         <div className='w-50 h-100 p-3 d-flex justify-content-evenly align-items-center flex-column'>
 
@@ -47,8 +55,8 @@ const Login = () =>{
             </div>
 
         <div className='d-flex gap-5 pt-5'>
-          <button onClick={validateUser}>Log in</button>
-          <button onClick={turnRegister}>Register</button>
+            <button onClick={validateUser}>Log in</button>
+            <button onClick={turnRegister}>Register</button>
         </div>
 
       </div>
