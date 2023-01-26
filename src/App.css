@@ -15,7 +15,8 @@ body {
 }
 
 .container-card-wall {
-    background-image: url(../public/cool-background.png);
+    background-image: url(../public/3563935.jpg);
+    background-size: contain;
     position: absolute;
     width: 45%;
     height: 120%;
@@ -23,6 +24,7 @@ body {
     left: 0%;
     z-index: 1;
     transition: 0.5s;
+    z-index: 999;
 }
 
 .input-form {
@@ -30,7 +32,6 @@ body {
     border: none;
     outline: none;
     width: 100%;
-    border-bottom: lightgray 2px solid;
 }
 
 .label-form {
@@ -47,4 +48,14 @@ body {
 
 .input-form:valid ~ .label-form {
     top: -20px;
+}
+.input-form:focus ~ .label-form {
+    top: -20px;
+}
+
+.text-blue {
+    color: #023e8a;
+}
+.bg-blue {
+    background-color: #023e8a;
 }

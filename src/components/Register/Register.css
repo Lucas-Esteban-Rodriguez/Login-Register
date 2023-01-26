@@ -1,19 +1,15 @@
-input {
-    background-color: transparent;
-    border: none;
-    outline: none;
-    width: 100%;
-    border-bottom: lightgray 2px solid;
+.container-register {
+    z-index: 1;
 }
-
-label {
-    pointer-events: none;
-    display: block;
-    top: 0;
+.container-register::after {
+    content: ' ';
     width: 100%;
-    transition: 0.3s;
+    height: 100%;   
+    position: absolute;
+    background-color:black;
+    z-index: -1;
+    opacity: 55%;
 }
-
-input:focus ~ label{
-    top: -20px;
+.input-register {
+    border-bottom: 2px solid white;
 }

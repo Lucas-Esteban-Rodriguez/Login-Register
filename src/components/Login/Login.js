@@ -1,5 +1,6 @@
 import { UserContext } from "../context/userContext"
-import { useState , useContext } from "react"
+import './Login.css';
+import { useState , useContext, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import { getFirestore , collection , getDocs} from "firebase/firestore"
 
@@ -9,7 +10,7 @@ const Login = () =>{
     const [ password , setPassword ] = useState()
     const navigate = useNavigate()
     const { handleUserData } = useContext(UserContext)
-
+    const [ warning , setWarning ] = useState()
 
     const validateUser = async() =>{
 
@@ -17,48 +18,56 @@ const Login = () =>{
             const db = getFirestore()
             const usersRef = collection(db,'Usuarios')
             const docsRef = await getDocs(usersRef)
+
             docsRef.forEach(doc => { 
-                
                 if (doc.id === email && doc.data().password === password) {
                     const data = [doc.data()]
                     handleUserData(...data)
                     navigate('/home')
                 }
-            });
+            })
+            if (email && password) {
+                setWarning('Email or password is wrong')
+            } else {
+                setWarning('Missing data')
+            }
         }
 
-        catch {
-            console.log('error')
+        catch(e) {
+            console.log(e)
         }
 
     }
 
     function turnRegister() {
         const wall = document.querySelector( ".container-card-wall" )
-        wall.style.left = '50%'
-      }
+        wall.style.left = '47%'
+        setEmail('')
+        setPassword('')
+        setWarning('')
+    }
 
     return (
+        
+        <div className='w-50 h-100 p-3 d-flex justify-content-evenly align-items-center flex-column position-relative container-login'>
 
-        <div className='w-50 h-100 p-3 d-flex justify-content-evenly align-items-center flex-column'>
+            <p className='text-blue h1 p-1 fw-bold'>Log in</p>
 
-        <p className='text-light h1 p-1'>Log in</p>
-
-            <div className='w-75 position-relative p-2'>
-                <input className='position-relative text-light px-2 input-form' autoComplete='off' required type='email' name='Email' onChange={(e) => setEmail(e.target.value)} value={email} placeholder='Email'></input>
-                <label className='position-absolute text-light label-form' htmlFor= 'Email' > Email </label>
+            <div className='w-75 position-relative my-3 py-1 px-4'>
+                <input className='position-relative text-blue px-2 input-form input-login a' autoComplete='off' required type='text' name='Email' onChange={(e) => setEmail(e.target.value)} value={email} placeholder='Email'></input>
+                <label className='position-absolute text-blue label-form fw-bold' htmlFor= 'Email' > Email </label>
             </div>
 
-            <div className='w-75 position-relative p-2'>
-                <input className='position-relative text-light px-2 input-form' autoComplete='off' required type='password' name='Password' onChange={(e) => setPassword(e.target.value)} value={password} placeholder='Password'></input>
-                <label className='position-absolute text-light label-form' htmlFor= 'Password' > Password </label>
+            <div className='w-75 position-relative my-3 py-1 px-4'>
+                <input className='position-relative text-blue px-2 input-form input-login' autoComplete='off' required type='password' name='Password' onChange={(e) => setPassword(e.target.value)} value={password} placeholder='Password'></input>
+                <label className='position-absolute text-blue label-form fw-bold' htmlFor= 'Password' > Password </label>
             </div>
 
         <div className='d-flex gap-5 pt-5'>
-            <button onClick={validateUser}>Log in</button>
-            <button onClick={turnRegister}>Register</button>
+            <button className="bg-blue outline-0 border-0 text-light fw-bold py-2 px-3 rounded" onClick={validateUser}>Log in</button>
+            <button className="bg-blue outline-0 border-0 text-light fw-bold py-2 px-3 rounded" onClick={turnRegister}>Register</button>
         </div>
-
+        <p className="p-3 text-danger" >{warning}</p>
       </div>
 
     )

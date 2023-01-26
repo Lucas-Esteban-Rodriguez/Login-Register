@@ -7,10 +7,9 @@ const Index = () => {
     return (
         <div className="w-75 h-75 p-5 container-card rounded shadow d-flex gap-5">
 
-          <div className='container-card-wall ms-5'></div>
+          <div className='container-card-wall ms-5 p-3'></div>
 
-          <Register />
-
+          <Register/>
           <Login/>
 
        </div>
