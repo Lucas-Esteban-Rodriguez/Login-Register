@@ -51,7 +51,7 @@ const Register = () => {
 
     return(
 
-    <div className='w-50 h-100 p-3 d-flex justify-content-evenly align-items-center flex-column position-relative container-register'>
+    <div className='p-md-3 d-flex justify-content-evenly align-items-center flex-column position-relative container-register'>
     <p className='h1 text-light p-1'>Register</p>
 
         <div className='d-flex gap-5'>

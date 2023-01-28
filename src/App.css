@@ -5,10 +5,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow-x: hidden;
 } 
 body {
     width: 100%;
     height: 100vh;
+    overflow: hidden;
 }
 .container-card {
     position: relative;
@@ -19,8 +21,8 @@ body {
     background-size: contain;
     position: absolute;
     width: 45%;
-    height: 120%;
-    top: -10%;
+    height: 100%;
+    top: 0%;
     left: 0%;
     z-index: 1;
     transition: 0.5s;
@@ -58,4 +60,12 @@ body {
 }
 .bg-blue {
     background-color: #023e8a;
+}
+
+@media (max-width: 576px) {
+    .container-card-wall {
+        width: 75%;
+        height: 25%;
+        display: none;
+    }
 }
