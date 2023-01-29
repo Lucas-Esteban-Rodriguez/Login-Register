@@ -3,6 +3,8 @@ import { UserContext } from "../context/userContext"
 
 const Home = () =>{
 
+    //the created context is used to collect the user data and display it
+
     const { data } = useContext(UserContext)
 
     return(

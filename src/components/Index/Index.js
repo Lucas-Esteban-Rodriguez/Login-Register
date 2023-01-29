@@ -6,6 +6,8 @@ import { useEffect } from 'react'
 
 const Index = () => {
 
+    //check if responsive must exist to manipulate the DOM.
+
     useEffect(()=>{
 
         const register = document.querySelector('.container-register')

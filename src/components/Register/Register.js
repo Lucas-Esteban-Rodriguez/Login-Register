@@ -10,8 +10,11 @@ const Register = () => {
     const [ newPassword , setNewPassword ] = useState()
     const [ userExisting , setUserExisting ] = useState(false)
     const [ warning , setWarning ] = useState()
-
+    
     const createUser = async() => {
+
+        //This function collects data entered by the user, performs comparisons to verify that it does not exist in the database and finally sends a new document with the information to firebase.
+       
         try {
             const user = {
                 date: new Date(),
@@ -40,6 +43,8 @@ const Register = () => {
     }
 
     function turnLogin() {
+        
+        //This function checks if responsive should exist and manipulates the DOM based on this information.
 
         const wall = document.querySelector( ".container-card-wall" )
         const register = document.querySelector('.container-register')

@@ -14,6 +14,8 @@ const Login = () =>{
 
     const validateUser = async() =>{
 
+        //The database is consulted if the data entered by the user matches the data stored there to validate the entry.
+
         try {
             const db = getFirestore()
             const usersRef = collection(db,'Usuarios')
@@ -41,6 +43,8 @@ const Login = () =>{
 
     function turnRegister() {
 
+        //This function checks if responsive should exist and manipulates the DOM based on this information.
+
         const wall = document.querySelector( ".container-card-wall" )
         const login = document.querySelector('.container-login')
         const register = document.querySelector('.container-register')
@@ -51,8 +55,6 @@ const Login = () =>{
             register.classList.remove('card-slow')
 
         } else {
-
-            console.log('tablet/desk')
          
             wall.style.left = '47%'
             setEmail('')
