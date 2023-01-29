@@ -64,7 +64,7 @@ const Login = () =>{
 
     return (
         
-        <div className='p-md-3 d-flex justify-content-evenly align-items-center flex-column position-relative container-login'>
+        <div className='p-md-3 d-flex justify-content-evenly align-items-center flex-column container-login'>
 
             <p className='text-blue h1 p-1 fw-bold'>Log in</p>
 
