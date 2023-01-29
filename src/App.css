@@ -12,19 +12,15 @@ body {
     height: 100vh;
     overflow: hidden;
 }
-.container-card {
-    position: relative;
-}
 
 .container-card-wall {
     background-image: url(../public/3563935.jpg);
     background-size: contain;
     position: absolute;
     width: 45%;
-    height: 100%;
-    top: 0%;
+    height: 120%;
+    top: -10%;
     left: 0%;
-    z-index: 1;
     transition: 0.5s;
     z-index: 999;
 }
@@ -62,10 +58,21 @@ body {
     background-color: #023e8a;
 }
 
+.card-slow {
+    animation: slow 0s forwards;
+}
+
+
+@keyframes slow {
+    to {
+        opacity: 0;
+        pointer-events: none;
+        position: absolute;
+    }
+}
+
 @media (max-width: 576px) {
     .container-card-wall {
-        width: 75%;
-        height: 25%;
         display: none;
     }
 }

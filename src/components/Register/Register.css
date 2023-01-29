@@ -2,6 +2,7 @@
     z-index: 1;
     width: 50%;
     height: 100%;
+    position: relative;
 }
 .container-register::after {
     content: ' ';
@@ -19,6 +20,7 @@
 @media (max-width: 576px) {
     
     .container-register {
+        left: 0;
         width: 100%;
         height: 50%;
     }

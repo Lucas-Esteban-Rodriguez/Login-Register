@@ -40,11 +40,26 @@ const Login = () =>{
     }
 
     function turnRegister() {
+
         const wall = document.querySelector( ".container-card-wall" )
-        wall.style.left = '47%'
-        setEmail('')
-        setPassword('')
-        setWarning('')
+        const login = document.querySelector('.container-login')
+        const register = document.querySelector('.container-register')
+
+        if (visualViewport.width < 576) {
+            
+            login.classList.add('card-slow')
+            register.classList.remove('card-slow')
+
+        } else {
+
+            console.log('tablet/desk')
+         
+            wall.style.left = '47%'
+            setEmail('')
+            setPassword('')
+            setWarning('')
+
+        }
     }
 
     return (
@@ -63,12 +78,12 @@ const Login = () =>{
                 <label className='position-absolute text-blue label-form fw-bold' htmlFor= 'Password' > Password </label>
             </div>
 
-        <div className='d-flex gap-5 pt-5'>
-            <button className="bg-blue outline-0 border-0 text-light fw-bold py-2 px-3 rounded" onClick={validateUser}>Log in</button>
-            <button className="bg-blue outline-0 border-0 text-light fw-bold py-2 px-3 rounded" onClick={turnRegister}>Register</button>
+            <div className='d-flex gap-3 pt-md-5 pt-4'>
+                <button className="bg-blue outline-0 border-0 text-light fw-bold py-2 px-3 rounded" onClick={validateUser}>Log in</button>
+                <button className="bg-blue outline-0 border-0 text-light fw-bold py-2 px-3 rounded" onClick={turnRegister}>Register</button>
+            </div>
+            <p className="p-3 text-danger" >{warning}</p>
         </div>
-        <p className="p-3 text-danger" >{warning}</p>
-      </div>
 
     )
 }

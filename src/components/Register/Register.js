@@ -40,21 +40,34 @@ const Register = () => {
     }
 
     function turnLogin() {
+
         const wall = document.querySelector( ".container-card-wall" )
-        wall.style.left = '0%'
-        setNewLastName('')
-        setNewFirstName('')
-        setNewEmail('')
-        setNewPassword('')
-        setWarning('')
+        const register = document.querySelector('.container-register')
+        const login = document.querySelector('.container-login')
+
+        if (visualViewport.width < 576) {
+            
+        register.classList.add('card-slow')
+        login.classList.remove('card-slow')
+
+        } else {
+
+            wall.style.left = '0%'
+            setNewLastName('')
+            setNewFirstName('')
+            setNewEmail('')
+            setNewPassword('')
+            setWarning('')
+
+        }
       }
 
     return(
 
-    <div className='p-md-3 d-flex justify-content-evenly align-items-center flex-column position-relative container-register'>
-    <p className='h1 text-light p-1'>Register</p>
+    <div className='p-md-3 d-flex justify-content-evenly align-items-center flex-column container-register mb-5'>
+        <p className='h1 text-light p-1'>Register</p>
 
-        <div className='d-flex gap-5'>
+        <div className='d-flex'>
             <div className='w-75 position-relative my-3 py-1 px-4'>
                 <input className='position-relative text-light px-2 input-form input-register' autoComplete='off' required type='text' name='firstName' onChange={(e) => setNewFirstName(e.target.value)} value={newFirstName} placeholder='First Name'></input>
                 <label className='position-absolute text-light label-form' htmlFor= 'firstName' > First Name </label>
