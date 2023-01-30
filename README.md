@@ -23,6 +23,6 @@ Used tools:
   -Firebase: A database for management of information.
   
  
-Thank you for viewing my project, I hope to be better in the next one, I accept any criticism and suggestion to improve this project, rodriguez lucasesteban24@gmail.com.
+Thank you for viewing my project, I hope to be better in the next one, I accept any criticism and suggestion to improve this project, rodriguezlucasesteban24@gmail.com.
 
 Lucas Rodriguez.
