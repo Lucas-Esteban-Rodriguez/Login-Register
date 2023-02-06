@@ -1,11 +1,11 @@
 
 import Register from '../Register/Register.js'
 import Login from '../Login/Login.js'
+import Wall from '../Wall/Wall.js'
 import { useEffect } from 'react'
 
 
 const Index = () => {
-
     //check if responsive must exist to manipulate the DOM.
 
     useEffect(()=>{
@@ -21,10 +21,9 @@ const Index = () => {
     return (
         <div className="w-lg-75 h-lg-75 w-md-100 h-md-50 px-5 container-card rounded d-flex gap-md-5 position-relative">
 
-          <div className='container-card-wall ms-5 p-3'></div>
-
-          <Register/>
-          <Login/>
+        <Wall/> 
+        <Register/>
+        <Login/>
 
        </div>
     )

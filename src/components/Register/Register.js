@@ -8,7 +8,6 @@ const Register = () => {
     const [ newLastName , setNewLastName ] = useState()
     const [ newEmail , setNewEmail ] = useState()
     const [ newPassword , setNewPassword ] = useState()
-    const [ userExisting , setUserExisting ] = useState(false)
     const [ warning , setWarning ] = useState()
     
     const createUser = async() => {
@@ -18,58 +17,47 @@ const Register = () => {
         try {
             const user = {
                 date: new Date(),
-                firstName: newFirstName,
-                lastName: newLastName,
+                firstName: newFirstName.toLowerCase(),
+                lastName: newLastName.toLowerCase(),
                 password: newPassword
             }
 
             const db = getFirestore()
             const usersRef = collection(db , 'Usuarios')
             const docsRef = await getDocs(usersRef)
+            const userExisting = false
 
             docsRef.forEach(doc => {
-                doc.id === newEmail?setUserExisting(true):console.log('ok')
+                doc.id === newEmail.toLowerCase()?userExisting=true:console.log('ok')
             })
 
             if (userExisting === false) {
-                await setDoc(doc(db, "Usuarios", newEmail), user);
+                await setDoc(doc(db, "Usuarios", newEmail.toLowerCase()), user);
+                alert('La cuenta fue creada con exito')
             } else (
-                setWarning('An account already exists with this email')
+                setWarning('Missing data')
             )
+            setWarning('')
         }
         catch {
-            setWarning('Missing data')
+            setWarning('An account already exist with this email')
         }
     }
 
     function turnLogin() {
         
-        //This function checks if responsive should exist and manipulates the DOM based on this information.
-
-        const wall = document.querySelector( ".container-card-wall" )
-        const register = document.querySelector('.container-register')
+        //This function manipulates the DOM..
         const login = document.querySelector('.container-login')
-
-        if (visualViewport.width < 576) {
-            
+        const register = document.querySelector('.container-register')
+        
         register.classList.add('card-slow')
         login.classList.remove('card-slow')
 
-        } else {
-
-            wall.style.left = '0%'
-            setNewLastName('')
-            setNewFirstName('')
-            setNewEmail('')
-            setNewPassword('')
-            setWarning('')
-
         }
-      }
 
     return(
 
-    <div className='p-md-3 d-flex justify-content-evenly align-items-center flex-column container-register mb-5'>
+    <div className='p-md-3 d-flex justify-content-evenly align-items-center flex-column container-register m-auto'>
         <p className='h1 text-light p-1'>Register</p>
 
         <div className='d-flex'>
@@ -95,7 +83,14 @@ const Register = () => {
 
       <div className='d-flex gap-5 pt-3'>
         <button className='outline-0 border-0 rounded text-dark bg-light fw-bold py-2 px-3' onClick={createUser} >Register</button>
-        <button className='outline-0 border-0 rounded text-dark bg-light fw-bold py-2 px-3' onClick={turnLogin}>Log in</button>
+
+        {   visualViewport.width < 576
+            ?
+            <button className='bg-blue outline-0 border-0 text-light fw-bold py-2 px-3 rounded btn-wall' onClick={turnLogin}>Login</button>
+            :
+            console.log(' ')
+        }
+
       </div>
 
         <p className='p-2 text-danger'> {warning} </p>

@@ -14,8 +14,6 @@ body {
 }
 
 .container-card-wall {
-    background-image: url(../public/3563935.jpg);
-    background-size: contain;
     position: absolute;
     width: 45%;
     height: 120%;
